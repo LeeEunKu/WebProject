@@ -20,7 +20,7 @@
 	$ary = array();
 	$ary1 = array();
 
-	while(($row = mysqli_fetch_array($retn))){
+	while($row = mysqli_fetch_array($retn)){
 		array_push($ary, $row[0]);
 		array_push($ary1, $row[1]);
 	}
