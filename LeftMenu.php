@@ -40,7 +40,7 @@
 		<p style=\"margin-top:100px\">
 			<ul id=\"btnBg\">";
 	for($i = 0; $i < sizeof($ary); $i++)
-		echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='sub.html'\">$ary[$i] $ary1[$i]분반</button></li>";
+		echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='sub.php'\">$ary[$i] $ary1[$i]분반</button></li>";
 	echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='pfTimetable.html'\">시간표</button></li>
 			</ul>
 		</body>
