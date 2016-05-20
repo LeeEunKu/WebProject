@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+				<style type="text/css">
+		 			#message{position: absolute; left: 50%; top: 50%; margin-top: -150px; margin-left: -150px;}
+		 			#btnLogin{position: absolute; margin-left: 120px; margin-top: 10px;}
+		 			.btnImg{position: relative; background: url("btnLogin.png"); width: 300px; height: 50px;}
+		 			.btnText{position: absolute;}
+				</style>
+	-->
+	</head>
+	<body>
+	<center>
+	<p style="margin-top:27px">
+		<font size=18>
+		<script type="text/javascript">
+			var d = new Date();
+			document.write(d.getFullYear());
+		</script>년도 
+
+		<script type="text/javascript">
+			var half = Math.ceil( currentMonth() / 6 );
+
+			document.write(half);
+
+			function halfYear(month) {
+			 	return Math.ceil( month / 6 );
+			}
+
+			function currentMonth() {
+			  	var d = new Date();
+
+			  return d.getMonth() + 1; 
+			}
+		</script>학기 학생관리시스템</font>
+		</p>
+	</center>
+	</body>
+</html>

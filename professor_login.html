@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="euc_kr">
+		<title>교수님_로그인</title>
+		<style type="text/css">
+ 			#message{position:absolute;left:50%;top:50%;margin-top: -200px; margin-left: -150px;}
+ 			.btnImg{border: 0px; background-color: #0066ac; width: 300px; height: 50px; margin-top: 20px;}
+ 			.btnText{position: absolute; margin-left: 120px; margin-top: 10px;}
+		</style>
+	</head>
+	<body>
+		<form action="main_check.php" align="center" method="post">
+			<div id="message">
+				<p><img src="logo.png" width="180px" height="180px"></p>
+				<p><input type="text" name="id" required="required" placeholder="사번" style="width: 250px; height: 30px;"></p>
+				<p><input type="password" name="pw" required="required" placeholder="비밀번호" style="width: 250px; height: 30px;"></p>
+				<div>
+					<button type="submit" class="btnImg"  style="color: #FFFFFF; font-size: 20px;">로그인</button><br>
+					<button type="button" class="btnImg" onclick="location.href='professor_register.html'" style="color: #FFFFFF; font-size: 20px;">회원가입</button>
+				</div>
+			</div>
+		</body>
+</html>
