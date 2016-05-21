@@ -11,25 +11,22 @@
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 
-	$cname = $_REQUEST['cname'];
-	$divide = $_REQUEST['divide'];
-
 	$sql = "SELECT DISTINCT cname, divide from pro_schedule";
 	$retn = mysqli_query($connect, $sql);
 
-	$ary = array();
-	$ary1 = array();
+	$ary_menu = array();
+	$ary_menu1 = array();
 
 	while($row = mysqli_fetch_array($retn)){
-		array_push($ary, $row[0]);
-		array_push($ary1, $row[1]);
+		array_push($ary_menu, $row[0]);
+		array_push($ary_menu1, $row[1]);
 	}
 	echo "<!DOCTYPE html>
 		<html>
 		<head>
 			<meta charset=\"euc_kr\">
 			<title>List</title>
-			<style type=\"text/css\">
+			<style judy_type(array)=\"text/css\">
 				#btnBg li {display: block;}
 				#btnBg li button {border: 0px; background: #0066ac; width: 270px; height: 35px; margin-top: 3px;}
 				#btnBg li button:hover {background: #0098de;}
@@ -39,8 +36,8 @@
 		<body>
 		<p style=\"margin-top:100px\">
 			<ul id=\"btnBg\">";
-	for($i = 0; $i < sizeof($ary); $i++)
-		echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='sub.php'\">$ary[$i] $ary1[$i]분반</button></li>";
+	for($i = 0; $i < sizeof($ary_menu); $i++)
+		echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='sub.php'\">$ary_menu[$i] $ary_menu1[$i]분반</button></li>";
 	echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='pfTimetable.html'\">시간표</button></li>
 			</ul>
 		</body>
