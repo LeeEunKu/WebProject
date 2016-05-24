@@ -4,7 +4,16 @@
   $divide = $_REQUEST['divide'];
 
 echo "<p style=\"margin-top:20px\">
- <p>";
+ <p>
+ <SCRIPT LAUNGUAGE='JAVASCRIPT'>
+          function test(){
+                     if(!confirm(\"출석 확인을 하시겠습니까?\")) {
+                        return false;
+                      }
+                      (\"test.php?id=\"+f.id.value + \"&pw=\" + f.pw.value + \"&pro_name=\" + f.pro_name.value);
+                        return true;
+           }
+</SCRIPT>  ";
  echo "<font size=6 style=\"margin-left:185px\">$cname $divide"."분반 출결현황</font><br>";
 echo "<center>
  <table width=\"700\" borderColor=#000000 border=\"1\" cellspacing=\"0\" cellpadding=\"0\">
@@ -28,14 +37,28 @@ echo "<center>
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $sql = "SELECT DISTINCT S.id, S.stu_name, S.year, S.dept, A.result, A.date, P.cname FROM (SELECT * FROM pro_schedule WHERE pro_schedule.cname='$cname' and pro_schedule.divide='$divide') AS P, attendance AS A, student AS S WHERE P.cname=A.cname and P.divide=A.divide and S.id=A.id";
+  $sql = "SELECT DISTINCT S.id, S.stu_name, S.year, S.dept, A.result FROM (SELECT * FROM pro_schedule WHERE pro_schedule.cname='$cname' and pro_schedule.divide='$divide') AS P, attendance AS A, student AS S WHERE P.cname=A.cname and P.divide=A.divide and S.id=A.id order by result desc";
 
   $retn = mysqli_query($connect, $sql);
 
   $ary_sub = array();
+  $res = array();
+  $k = 0;
   $count = 0;
 
   while($row = mysqli_fetch_array($retn)){
+    if($row[4]==0){
+     $row[4] = '결석';
+    }
+    else if($row[4]==1){
+      $row[4] = '지각';
+    }
+    else if($row[4]==2){
+      $row[4] = '출석';
+    }
+    else{
+      $row[4] = '<form action="test.php method="post" name="form" onsubmit="return test()"><input type = "submit" value = "임시출석" style = "height:30px; font-size:18px; margin-top:10px; width:100px; height:32px"></form>';
+    }
     array_push($ary_sub, $row[0], $row[1], $row[2], $row[3], $row[4]);
     $count++;
   }
@@ -43,7 +66,8 @@ echo "<center>
  for($i = 0; $i < $count; $i++){
   echo "<tr>";
   for($j = 0; $j < 5; $j++){
-     echo "<td height='40' width='50' bgColor=\"#ffff00\" align=\"center\">$ary_sub[$j]</td>";
+     echo "<td height='40' width='50' bgColor=\"#ffff00\" align=\"center\">$ary_sub[$k]</td>";
+     $k++;
    }
    echo "</tr>";
  }
