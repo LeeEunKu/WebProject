@@ -28,28 +28,14 @@ echo "<center>
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $sql = "SELECT DISTINCT S.id, S.stu_name, S.year, S.dept, A.result FROM (SELECT * FROM pro_schedule WHERE pro_schedule.cname='$cname' and pro_schedule.divide='$divide') AS P, attendance AS A, student AS S WHERE P.cname=A.cname and P.divide=A.divide and S.id=A.id order by result desc";
+  $sql = "SELECT DISTINCT S.id, S.stu_name, S.year, S.dept, A.result, A.date, P.cname FROM (SELECT * FROM pro_schedule WHERE pro_schedule.cname='$cname' and pro_schedule.divide='$divide') AS P, attendance AS A, student AS S WHERE P.cname=A.cname and P.divide=A.divide and S.id=A.id";
 
   $retn = mysqli_query($connect, $sql);
 
   $ary_sub = array();
-  $res = array();
-  $k = 0;
   $count = 0;
 
   while($row = mysqli_fetch_array($retn)){
-    if($row[4]==0){
-     $row[4] = '결석';
-    }
-    else if($row[4]==1){
-      $row[4] = '지각';
-    }
-    else if($row[4]==2){
-      $row[4] = '출석';
-    }
-    else{
-      $row[4] = '임시출석';
-    }
     array_push($ary_sub, $row[0], $row[1], $row[2], $row[3], $row[4]);
     $count++;
   }
@@ -57,8 +43,7 @@ echo "<center>
  for($i = 0; $i < $count; $i++){
   echo "<tr>";
   for($j = 0; $j < 5; $j++){
-     echo "<td height='40' width='50' bgColor=\"#ffff00\" align=\"center\">$ary_sub[$k]</td>";
-     $k++;
+     echo "<td height='40' width='50' bgColor=\"#ffff00\" align=\"center\">$ary_sub[$j]</td>";
    }
    echo "</tr>";
  }
