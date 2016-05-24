@@ -37,7 +37,7 @@
 		<p style=\"margin-top:100px\">
 			<ul id=\"btnBg\">";
 	for($i = 0; $i < sizeof($ary_menu); $i++)
-		echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='sub.php'\">$ary_menu[$i] $ary_menu1[$i]분반</button></li>";
+		echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='sub.php?cname=$ary_menu[$i]&divide=$ary_menu1[$i]'\">$ary_menu[$i] $ary_menu1[$i]분반</button></li>";
 	echo "<li><button type=\"button\" class=\"btnText\" onclick=\"top.frames[2].location.href='pfTimetable.html'\">시간표</button></li>
 			</ul>
 		</body>
