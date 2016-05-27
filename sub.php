@@ -4,17 +4,8 @@
   $divide = $_REQUEST['divide'];
 
 echo "<p style=\"margin-top:20px\">
- <p>
- <SCRIPT LAUNGUAGE='JAVASCRIPT'>
-          function test(){
-                     if(!confirm(\"출석 확인을 하시겠습니까?\")) {
-                        return false;
-                      }
-                      (\"test.php?id=\"+f.id.value + \"&pw=\" + f.pw.value + \"&pro_name=\" + f.pro_name.value);
-                        return true;
-           }
-</SCRIPT>  ";
- echo "<font size=6 style=\"margin-left:185px\">$cname $divide"."분반 출결현황</font><br>";
+ <p> ";
+ echo "<form action=\"test.php method=\"post\" name=\"form\" onsubmit=\"return test()\"><font size=6 style=\"margin-left:185px\">$cname $divide"."분반 출결현황</font><input type = \"submit\" value = \"임시출석 전체 변경\" name = \"totwaitat\" style = \"height:30px; font-size:18px; margin-top:10px; width:200px; height:32px; margin-left:50px\"></form><br>";
 echo "<center>
  <table width=\"700\" borderColor=#000000 border=\"1\" cellspacing=\"0\" cellpadding=\"0\">
    <tr>
@@ -57,9 +48,19 @@ echo "<center>
       $row[4] = '출석';
     }
     else{
-      $row[4] = '<form action="test.php method="post" name="form" onsubmit="return test()"><input type = "submit" value = "임시출석" style = "height:30px; font-size:18px; margin-top:10px; width:100px; height:32px"></form>';
+      $row[4] = '<form name="form1"><input type = "button" value = "임시출석" name = "waitat" onclick = "return test()" style = "height:30px; font-size:18px; margin-top:10px; width:100px; height:32px;"></form>';
     }
-    array_push($ary_sub, $row[0], $row[1], $row[2], $row[3], $row[4]);
+    echo "<SCRIPT LAUNGUAGE='JAVASCRIPT'>
+          function test(){
+            var f = document.form1;
+                     if(!confirm(\"출석 확인을 하시겠습니까?\")) {
+                        return false;
+                      }
+                     f.waitat.type=\"hidden\";
+                        return true;
+           }
+</SCRIPT>";
+    array_push($ary_sub, $row[0], $row[1], $row[2], $row[3], $row[4]); 
     $count++;
   }
 
